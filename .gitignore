@@ -1,2 +1,16 @@
 Mindguard/.git_backup
 Mindguard/*.bak
+node_modules
+.env
+dist
+build
+.next
+.vercel
+*.zip
+.DS_Store
+.env
+.env.local
+.env.*
+.env
+.env.local
+.env.*
