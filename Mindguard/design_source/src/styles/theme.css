@@ -1,54 +1,55 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* CogniGuard Cyberpunk Theme */
+  /* CogniGuard Light Theme */
   --font-size: 16px;
-  --background: #050810;
-  --foreground: #E8F3F1;
-  --card: #0D1525;
-  --card-foreground: #E8F3F1;
-  --popover: #0D1525;
-  --popover-foreground: #E8F3F1;
-  --primary: #00E5CC;
-  --primary-foreground: #050810;
-  --secondary: #1A2640;
-  --secondary-foreground: #E8F3F1;
-  --muted: #1A2640;
-  --muted-foreground: #6B7A99;
-  --accent: #00E5CC;
-  --accent-foreground: #050810;
-  --destructive: #FF3B5C;
+  --background: #FFFFFF;
+  --foreground: #0F1721; /* slate-900 */
+  --card: #F8FAFC; /* slate-50 */
+  --card-foreground: #0F1721;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F1721;
+  --primary: #0EA5FF; /* sky-500 */
+  --primary-foreground: #FFFFFF;
+  --secondary: #E6EEF8; /* soft secondary */
+  --secondary-foreground: #0F1721;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #0EA5FF;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --warning: #FFB347;
-  --warning-foreground: #050810;
-  --border: rgba(0, 229, 204, 0.2);
-  --input: rgba(0, 229, 204, 0.15);
-  --input-background: rgba(13, 21, 37, 0.6);
-  --switch-background: #1A2640;
+  --warning: #F59E0B;
+  --warning-foreground: #0F1721;
+  --border: rgba(15, 23, 37, 0.06);
+  --input: rgba(15, 23, 37, 0.04);
+  --input-background: #FFFFFF;
+  --switch-background: #E6EEF8;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #00E5CC;
-  --chart-1: #00E5CC;
+  --ring: #0EA5FF;
+  --chart-1: #0EA5FF;
   --chart-2: #7C3AED;
-  --chart-3: #FF3B5C;
-  --chart-4: #FFB347;
+  --chart-3: #EF4444;
+  --chart-4: #F59E0B;
   --chart-5: #3B82F6;
-  --radius: 0.75rem;
-  --sidebar: #0D1525;
-  --sidebar-foreground: #E8F3F1;
-  --sidebar-primary: #00E5CC;
-  --sidebar-primary-foreground: #050810;
-  --sidebar-accent: #1A2640;
-  --sidebar-accent-foreground: #E8F3F1;
-  --sidebar-border: rgba(0, 229, 204, 0.2);
-  --sidebar-ring: #00E5CC;
-  
+  --radius: 0.5rem;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0F1721;
+  --sidebar-primary: #0EA5FF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F8FAFC;
+  --sidebar-accent-foreground: #0F1721;
+  --sidebar-border: rgba(15, 23, 37, 0.06);
+  --sidebar-ring: #0EA5FF;
+
   /* Typography */
   --font-heading: 'Space Mono', monospace;
   --font-body: 'IBM Plex Sans', sans-serif;
 }
 
 .dark {
+  /* Dark overrides (kept for compatibility) */
   --background: #050810;
   --foreground: #E8F3F1;
   --card: #0D1525;
@@ -138,7 +139,7 @@
     overflow-x: hidden;
   }
 
-  /* Cyberpunk background gradient noise */
+  /* Subtle light background texture */
   body::before {
     content: '';
     position: fixed;
@@ -146,15 +147,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 50%, rgba(0, 229, 204, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    background: linear-gradient(180deg, rgba(14, 165, 255, 0.02), rgba(249,250,251,0.02));
     pointer-events: none;
     z-index: 0;
   }
 
-  /* Noise texture overlay */
   body::after {
     content: '';
     position: fixed;
@@ -162,7 +159,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    background-image: none;
     pointer-events: none;
     z-index: 1;
   }
@@ -226,22 +223,19 @@
 
   /* Neon glow utilities */
   .neon-glow {
-    box-shadow: 
-      0 0 10px rgba(0, 229, 204, 0.3),
-      0 0 20px rgba(0, 229, 204, 0.2),
-      0 0 30px rgba(0, 229, 204, 0.1);
+    box-shadow: 0 2px 8px rgba(14, 165, 255, 0.08);
   }
 
   .neon-text {
-    text-shadow: 
-      0 0 10px rgba(0, 229, 204, 0.5),
-      0 0 20px rgba(0, 229, 204, 0.3);
+    text-shadow: none;
+    color: var(--foreground);
+    font-weight: 700;
   }
 
   .glass-card {
-    background: rgba(13, 21, 37, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 204, 0.2);
+    background: var(--card);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
   }
 }
