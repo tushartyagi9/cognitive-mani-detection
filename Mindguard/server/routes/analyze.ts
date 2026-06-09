@@ -308,7 +308,7 @@ analyzeRouter.post(
         return;
       }
 
-      if (mode === 'email' && isEmailAnalysisResult(ai)) {
+      if (isEmailAnalysisResult(ai)) {
         const emailScore = ai.manipulation_score;
         const emailLabel = getEmailLabel(emailScore, ai.email_label);
         const riskLevel = getEmailRiskLevel(emailLabel);

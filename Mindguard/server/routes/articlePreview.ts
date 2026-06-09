@@ -1,7 +1,7 @@
 import { Router, type Request, type Response, type NextFunction } from 'express';
 import { z } from 'zod';
 import { scrapeUrl } from '../lib/firecrawl.js';
-import { analyzeWithAI } from '../lib/openai.js';
+import { analyzeWithAI, isEmailAnalysisResult } from '../lib/openai.js';
 import { ApiError } from '../middleware/errorHandler.js';
 
 export const articlePreviewRouter = Router();
@@ -28,6 +28,9 @@ articlePreviewRouter.post(
       // Run a quick AI analysis on headline + first 500 chars to get headlineRisk
       const headlineSample = `${article.title}. ${article.bodyText.substring(0, 500)}`;
       const headlineAnalysis = await analyzeWithAI(headlineSample, 'news');
+      if (isEmailAnalysisResult(headlineAnalysis)) {
+        throw new ApiError(502, 'Unexpected email analysis response for article preview.');
+      }
 
       const tags: string[] = [];
       if (headlineAnalysis.manipulationScore >= 66) {

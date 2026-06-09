@@ -1,0 +1,15 @@
+{
+  "name": "cognitive-mani-detection",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "Mindguard"
+  ],
+  "scripts": {
+    "build": "npm --workspace Mindguard run build",
+    "dev": "npm --workspace Mindguard run dev",
+    "dev:server": "npm --workspace Mindguard run dev:server",
+    "server:start": "npm --workspace Mindguard run server:start",
+    "typecheck": "npm --workspace Mindguard run typecheck && npm --workspace Mindguard run typecheck:server"
+  }
+}
