@@ -85,6 +85,7 @@ export function extractEvidenceByMode(text: string, mode: string): ExtractionRes
       'call our officer', 'cyber crime cell',
       'wire transfer', 'keep this confidential',
       'upi pin', 'net banking password', 'enter your otp',
+      'verify your password', 'share your password', 'provide your password',
       'aadhaar linked to illegal', 'money laundering',
     ];
 
@@ -100,6 +101,7 @@ export function extractEvidenceByMode(text: string, mode: string): ExtractionRes
       'rbi circular', 'trai notice', 'it department',
       'sbi kyc', 'hdfc kyc', 'icici kyc',
       'verify your account', 'verify your identity', 'mandatory verification',
+      'verify your password',
       'kyc update',
       'regulatory compliance', 'legal action',
     ];
@@ -107,12 +109,12 @@ export function extractEvidenceByMode(text: string, mode: string): ExtractionRes
     const urgencyManipulationPatterns = [
       'within 24 hours', 'within 48 hours', 'within 2 hours',
       'expires today', 'act now', 'immediate action required',
-      'last chance', 'today only', 'before midnight',
+      'last chance', 'today only', 'before midnight', 'urgent', 'immediately',
       'offer till', 'sunday only', 'by 31 march',
     ];
 
     const fearInductionPatterns = [
-      'unusual activity', 'account suspended',
+      'unusual activity', 'account suspended', 'account will be suspended',
       'payment failed', 'account will be closed',
       'security alert', 'unauthorized access',
       'your account has been', 'action required', 'account frozen',

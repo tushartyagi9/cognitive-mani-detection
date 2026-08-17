@@ -1,0 +1,13 @@
+# Research and offline training/evaluation tooling only.
+# These packages are not required by the deployed Vite/Express application.
+datasets
+datasketch
+langdetect
+matplotlib
+numpy
+pandas
+scikit-learn
+seaborn
+statsmodels
+torch
+transformers

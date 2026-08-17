@@ -7,13 +7,17 @@ import { historyRouter } from './routes/history.js';
 import { evaluationRouter } from './routes/evaluationReport.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
-// ─── Startup env-key guard ───────────────────────────────────────────────────
-const REQUIRED_KEYS = ['GROQ_API_KEY', 'FIRECRAWL_API_KEY', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'];
-const missing = REQUIRED_KEYS.filter(k => !process.env[k]);
-if (missing.length) {
-  console.warn(`⚠  Missing environment variables: ${missing.join(', ')}`);
-  console.warn('   Some features will fall back to degraded mode.');
-}
+// ─── Optional integration summary ────────────────────────────────────────────
+// The rule-based analysis tier is self-contained, so no provider key is needed
+// for the API to start. Each integration validates its own configuration when a
+// feature that needs it is requested.
+const optionalServices = {
+  groq: !!process.env.GROQ_API_KEY,
+  huggingface: !!process.env.HUGGINGFACE_API_KEY,
+  firecrawl: !!process.env.FIRECRAWL_API_KEY,
+  supabase: !!(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY),
+  openaiEvaluation: !!process.env.OPENAI_API_KEY,
+};
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3001;
@@ -38,9 +42,11 @@ app.get('/api/health', (_req, res) => {
     status: 'ok',
     timestamp: new Date().toISOString(),
     services: {
-      groq:      !!process.env.GROQ_API_KEY,
-      firecrawl: !!process.env.FIRECRAWL_API_KEY,
-      supabase:  !!process.env.SUPABASE_URL,
+      groq: optionalServices.groq,
+      huggingface: optionalServices.huggingface,
+      firecrawl: optionalServices.firecrawl,
+      supabase: optionalServices.supabase,
+      openaiEvaluation: optionalServices.openaiEvaluation,
     },
   });
 });
